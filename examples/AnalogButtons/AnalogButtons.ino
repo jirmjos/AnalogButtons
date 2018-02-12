@@ -1,51 +1,75 @@
+
+/* Personalized example tested on ESP8266 and touch sensor multiswitch
+Wiring
+
+                         GND 
+
+                          |
+                          |
+                          | 
+                          <
+                          < R=100K
+                          <
+                          |
+         (L)Sw1    R=2K   |
+VCC 3,3v ---/ ---^^^^^----|
+                          |
+         (C)Sw2    R=5K   |           ESP
+VCC 3,3v ---/ ---^^^^^----|-----------A0 (input)
+	                  |
+         (R)Sw3    R=10K  |
+VCC 3,3v ---/ ---^^^^^----|
+*/
+
 #include <AnalogButtons.h>
 
-#define ANALOG_PIN A1
+
+#define ANALOG_PIN A0
 
 // A call back function that you pass into the constructor of AnalogButtons, see example
 // below. Alternativly you could extend the Button class and re-define the methods pressed() 
 // or held() which are called 
 void b1Click() {  
-    Serial.print("button 1 clicked"); 
+    Serial.println("button L clicked"); 
 }
 
 void b2Click() {  
-    Serial.print("button 2 clicked"); 
+    Serial.println("button C clicked"); 
 }
 void b2Hold() {  
-    Serial.print("button 2 held"); 
+    Serial.println("button C held"); 
 }
 
 void b3Click() {  
-    Serial.print("button 3 clicked"); 
+    Serial.println("button R clicked"); 
 }
 void b3Hold() {  
-    Serial.print("button 3 held"); 
+    Serial.println("button R held"); 
 }
 
 void b4Click() {  
-    Serial.print("button 4 clicked"); 
+    Serial.println("button L+C clicked"); 
 }
 void b4Hold() {  
-    Serial.print("button 4 held"); 
+    Serial.println("button L+C held"); 
 }
 
 void b5Click() {  
-    Serial.print("button 5 clicked"); 
+    Serial.println("button C+R clicked"); 
 }
 void b5Hold() {  
-    Serial.print("button 5 held"); 
+    Serial.println("button C+R held"); 
 }
 
 AnalogButtons analogButtons(ANALOG_PIN, INPUT);
-Button b1 = Button(1013, &b1Click);
-Button b2 = Button(1002, &b2Click, &b2Hold);
-Button b3 = Button(970, &b3Click, &b3Hold);
+Button b1 = Button(674, &b1Click);
+Button b2 = Button(276, &b2Click, &b2Hold);
+Button b3 = Button(148, &b3Click, &b3Hold);
 // Default hold activation frequency of 250ms is overriden for button 4 so to 
 // get it activated (hold function invoked) only every 500ms
-Button b4 = Button(929, &b4Click, &b4Hold, 1000, 500);
+Button b4 = Button(951, &b4Click, &b4Hold, 1000, 500);
 // Default hold duration is 1 second, lets make it 5 seconds for button5
-Button b5 = Button(860, &b5Click, &b5Hold, 5000);
+Button b5 = Button(413, &b5Click, &b5Hold, 5000);
 
 void setup() {
   Serial.begin(9600); 
@@ -70,7 +94,7 @@ void loop() {
 }
 
 void configure() {
-	unsigned int value = analogRead(ANALOG_PIN);
-	Serial.println(value);
-	delay(250);
+  unsigned int value = analogRead(ANALOG_PIN);
+  Serial.println(value);
+  delay(250);
 }
