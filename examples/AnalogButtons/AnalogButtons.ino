@@ -11,7 +11,7 @@ Wiring
                           <
                           < R=100K
                           <
-                          |
+       3xTouch TTP223                 |
          (L)Sw1    R=2K   |
 VCC 3,3v ---/ ---^^^^^----|
                           |
