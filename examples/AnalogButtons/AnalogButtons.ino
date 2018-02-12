@@ -2,8 +2,9 @@
 /* Personalized example tested on ESP8266 and touch sensor multiswitch
 Wiring
 
-                         GND 
-
+                         GND
+			 ---
+                        -----  
                           |
                           |
                           | 
